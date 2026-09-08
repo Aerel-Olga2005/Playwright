@@ -16,10 +16,10 @@ test("test positive", async () => {
   await page.getByRole("textbox", { name: "Пароль" }).fill(password);
   await page.getByTestId('login-submit-btn').click();
 
-  await expect(page.getByText("Учим - и помогаем на каждом этапе")).toBeVisible();
-
+  await expect(page.frameLocator('[data-testid="advanced-iframe"]').getByTestId('submit')).toBeVisible();
+   
   await browser.close();
-});
+}, 5000);
 
 test("test negative", async () => {
   const browser = await chromium.launch({ headless: false });
